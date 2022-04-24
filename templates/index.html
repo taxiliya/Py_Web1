@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Movie name</th>
+            <th scope="col">Director</th>
+            <th scope="col">Add time</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for song in songset %}
+        <tr>
+            <th scope="row">{{song.id}}</th>
+            <td>{{song.song_name}}</td>
+            <td>{{song.singer_name}}</td>
+            <td>{{song.storage_time}}</td>
+            <td>
+                <form method="post" action="del_row">
+                    <input type="hidden" name="songid" value={{song.id}}>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+            <td>
+                <form method="post" action="go_edit_row">
+                    <input type="hidden" name="songid" value={{song.id}}>
+                    <button type="submit" class="btn btn-info">Edit</button>
+                </form>
+            </td>
+        </tr>
+
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
